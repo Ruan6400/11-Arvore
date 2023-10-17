@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdio>
 using namespace std;
 
 // definicao de tipo
@@ -40,7 +41,7 @@ void menu()
 {
 	int op = 0;
 	while (op != 6) {
-		system("cls"); // somente no windows
+		system("clear"); // somente no windows
 		cout << "Menu Arvore";
 		cout << endl << endl;
 		cout << "1 - Inicializar Arvore \n";
@@ -71,17 +72,18 @@ void menu()
 			break;
 		}
 
-		system("pause"); // somente no windows
+		getchar(); // somente no windows
 	}
 }
 
 void inicializar()
 {
 
-	// provisório porque não libera a memoria usada pela arvore
+	// provisï¿½rio porque nï¿½o libera a memoria usada pela arvore
 	NO* raiz = NULL;
 
 	cout << "Arvore inicializada \n";
+	getchar();
 
 }
 
@@ -97,7 +99,7 @@ void inserir()
 	else {
 		insereArvore(raiz, valor);
 	}
-
+    
 
 }
 
@@ -108,6 +110,7 @@ void exibirQuantidade() {
 
 void exibir() {
 	exibirElementosArvore(raiz);
+	getchar();
 }
 
 void buscar() {
@@ -179,10 +182,23 @@ void exibirElementosArvore(NO* no)
 
 void buscarElementoArvore(NO* no, int valor)
 {
-
+    if(no==NULL){
+        cout<<"Valor nao encontrado";
+        getchar();
+        return;
+    }
+    if(valor==no->valor){
+        cout<<"Valor encontrado";
+        getchar();
+        return;
+    }
+    else{
+        if(valor>no->valor){
+            return buscarElementoArvore(no->dir,valor);
+        }
+        else{
+            return buscarElementoArvore(no->esq,valor);
+        }
+    }
 
 }
-
-
-
-
